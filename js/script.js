@@ -102,7 +102,7 @@ switch(criterio) {
 }
 
 //Empiezo preguntando al usuario que quiere hacer.
-let opcion = prompt ("Opción 1 \n--Ingresar datos-- \nOpción 2 \n--Consultar datos-- \n\nEnter para salir");
+let opcion = prompt ("Bienvenido/a al calculador de IMC y peso. \n\nOpción 1 --Ingresar datos-- \n\nEnter para salir");
 
 //Menú con sus respectivas opciones: 1, trae la data de IMC y el peso. 2, trae los datos ordenados según el criterio. 3, opción inválida.
 while (opcion != ""){
