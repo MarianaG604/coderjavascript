@@ -6,7 +6,7 @@ let fecha = new Date();
 let fechaFormateada = fecha.toLocaleDateString();
 guardadoDatos = [];
 
-//Función que calcula IMC y peso
+//Función que calcula IMC y pesos
 function datosPeso (){
   //Le pido nombre, peso, altura y fecha
   nombre = prompt("Ingresá tu nombre");
