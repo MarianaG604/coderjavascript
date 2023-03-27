@@ -4,11 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Primer desafío</title>    
-</head>
-<body>
-    <h1>Segundo desafio del curso de Javascript</h1>
-    <h2>Calculadora de IMC y peso</h2>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script defer src="js/script.js"></script>
+    <title>Calculadora de IMC</title>    
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4 text-center">Calculadora de IMC y peso corporal</h1>
+        <form>     
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ingresá tu nombre" id="formulario"><br>
+          </div>
+          <div class="form-group">
+            <label for="peso">Peso (kg)</label>
+            <input type="text" class="form-control" id="peso" placeholder="Ingresá tu peso" id="formulario"><br>
+          </div>
+          <div class="form-group">
+            <label for="altura">Altura (cm)</label>
+            <input type="text" class="form-control" id="altura" placeholder="Ingresá tu altura en centímetros, ejemplo: 1.70" id="formulario"><br>
+          </div>
+          <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input type="text" class="form-control" id="fecha" placeholder="Ingresá la fecha en formato dd/mm/yyyy" id="formulario"><br>
+          </div>
+          <button id="calcular" class="btn btn-primary">Calcular IMC</button>
+          <button type="reset" class="btn btn-primary" value="Reset">Limpiar formulario</button>
+        </form>
+
+        <br>
+
+        <section id="showresultado">
+            <div class="jumbotron jumbotron-fluid d-flex justify-content-center">
+                <div class="container">
+            <h3 class="display-6 d-flex justify-content-center">Este es tu resultado</h3>
+            <img id="imagen" style = "width: 100; height: 100" class="img-fluid mx-auto d-block">
+            <div id="resultado" class="d-flex justify-content-center">
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <button id="borrar" class="btn btn-primary">Limpiar datos</button>
+        </section>
+      </div>
+    
 </body>
 </html>

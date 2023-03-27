@@ -1,21 +1,123 @@
+let calculos = [];
+
+//Elementos del DOM que se usan
+const nombreUsuario = document.getElementById('nombre'),
+      pesoUsuario = document.getElementById('peso'),
+      alturaUsuario = document.getElementById('altura'),
+      fechaUsuario = document.getElementById('fecha'),
+      resultadoUsuario = document.getElementById('resultado'),
+      btnCalcular = document.getElementById('calcular'),
+      btnLimpiar = document.getElementById('borrar');
+
+//Lo uso para tomar datos del usuario
+class Usuario {
+  constructor(nombre, peso, altura, fecha) {
+      this.nombre = nombre;
+      this.peso = peso;
+      this.altura = altura;
+      this.fecha = fecha;
+  }
+}
+
+//Tomo los datos del usuario
+function agregarUsuario (listado){
+  const usuarios = new Usuario (nombreUsuario.value, pesoUsuario.value, alturaUsuario.value, fechaUsuario.value)
+  listado.push(usuarios)
+}
+
+//Guardo los datos en LocalStorage
+function guardarUsuarios(listado){
+  localStorage.setItem('usuariosGuardados', JSON.stringify(listado))
+}
+
+//Hago el cálculo del IMC
+function calcularIMC (){
+  let peso = pesoUsuario.value;
+  let altura = alturaUsuario.value;
+  let calculo = peso / (altura * altura);
+  let convert = calculo.toFixed(1);
+
+  if (calculo <= 18.5){
+  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en bajo peso, tu IMC es: ${convert}`;
+  } else if (calculo > 18.5 && calculo < 24.9) {
+  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás dentro de los valores normales, tu IMC es: ${convert}`;
+  } else if (calculo > 25 && calculo < 29.9) {
+  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en el rango de sobrepeso, tu IMC es: ${convert}`;
+  } else if (calculo > 30 && calculo < 34.9) {
+  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en el rango de obesidad, tu IMC es: ${convert}`;
+  } else if (calculo > 35) {
+  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en el rango de obesidad mórbida, tu IMC es: ${convert}`;
+  } else {
+    nombreUsuario.value + ", ingresaste datos inválidos, no podemos calcular tu IMC";
+    return null;
+}
+
+let imagenResultado = document.getElementById('imagen');
+if (imagenResultado) {
+  switch (true) {
+    case (calculo <= 18.5):
+      imagenResultado.src = "./img/warning.png";
+      break;
+    case (calculo > 18.5 && calculo < 24.9):
+      imagenResultado.src = "./img/checked.png";
+      break;
+    case (calculo > 25 && calculo < 29.9):
+      imagenResultado.src = "./img/warning1.png";
+      break;
+    case (calculo > 30 && calculo < 34.9):
+      imagenResultado.src = "./img/warning.png";
+      break;
+    case (calculo > 35):
+      imagenResultado.src = "./img/critical.png";
+      break;
+    default:
+      imagenResultado.src = "./img/nodata.png";
+      break;
+  }
+}
+}
+
+//Botón que dispara el cálculo
+btnCalcular.onclick = (e) => {
+  e.preventDefault();
+  if (!nombreUsuario.value || !pesoUsuario.value || !alturaUsuario.value){
+    alert("Por favor completá todos los datos")
+  } else{
+    calcularIMC();
+  }
+  agregarUsuario (calculos);
+  guardarUsuarios (calculos);
+}
+
+//Función para limpiar datos en LocalStorage
+function limpioDatos() {
+  localStorage.clear();
+  sessionStorage.clear();
+}
+
+//Botón para limpiar datos en LocalStorage
+btnLimpiar.onclick = (e) => {
+  e.preventDefault();
+  limpioDatos();
+}
+
 //Inicializo variables
-let nombre;
-let peso; 
-let altura;
-let fecha = new Date();
-let fechaFormateada = fecha.toLocaleDateString();
-guardadoDatos = [];
+//let nombre;
+//let peso; 
+//let altura;
+//let fecha = new Date();
+//let fechaFormateada = fecha.toLocaleDateString();
+//guardadoDatos = [];
 
 //Función que calcula IMC y pesos
-function datosPeso (){
+//function datosPeso (){
   //Le pido nombre, peso, altura y fecha
-  nombre = prompt("Ingresá tu nombre");
-  while (nombre == "") {
-    alert("Por favor, ingresá tu nombre");
-    nombre = prompt("Ingresá tu nombre");
-  }
-
-   peso = prompt("Ingresá tu peso");
+  //nombre = prompt("Ingresá tu nombre");
+  //while (nombre == "") {
+  // alert("Por favor, ingresá tu nombre");
+  // nombre = prompt("Ingresá tu nombre");
+  //}
+  /* peso = prompt("Ingresá tu peso");
   while (isNaN(peso) == true || peso == "") {
     alert("Por favor, ingresá un valor correcto");
     peso = prompt("Ingresá tu peso");
@@ -32,6 +134,8 @@ function datosPeso (){
     alert("Por favor, ingresá un valor correcto.");
     fechaFormateada = prompt("Ingresá la fecha de tu peso, en el formato día/mes/año");
   }
+
+ 
 
    //Acá hago el cálculo del IMC, que es altura * altura y lo convierto a dos números después de la coma y lo muestro en un alert.
   let imc = peso / (altura * altura);
@@ -121,3 +225,4 @@ while (opcion != ""){
 opcion = prompt ("Opción 1 \n--Ingresar más datos-- \nOpción 2 \n--Consultar datos-- \n\nEnter para salir");
 }
 
+*/
