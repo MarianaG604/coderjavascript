@@ -7,27 +7,29 @@ const nombreUsuario = document.getElementById('nombre'),
       fechaUsuario = document.getElementById('fecha'),
       resultadoUsuario = document.getElementById('resultado'),
       btnCalcular = document.getElementById('calcular'),
+      imcShow = document.getElementById('imc-calc'),
       btnLimpiar = document.getElementById('borrar');
-
+      
 //Lo uso para tomar datos del usuario
 class Usuario {
-  constructor(nombre, peso, altura, fecha) {
-      this.nombre = nombre;
-      this.peso = peso;
-      this.altura = altura;
-      this.fecha = fecha;
+  constructor(nombre, peso, altura, fecha, imc) {
+    this.nombre = nombre;
+    this.peso = peso;
+    this.altura = altura;
+    this.fecha = fecha;
+    this.imc = imc;
   }
 }
 
 //Tomo los datos del usuario
 function agregarUsuario (listado){
-  const usuarios = new Usuario (nombreUsuario.value, pesoUsuario.value, alturaUsuario.value, fechaUsuario.value)
+  const usuarios = new Usuario (nombreUsuario.value, pesoUsuario.value, alturaUsuario.value, fechaUsuario.value, resultadoUsuario.value);
   listado.push(usuarios)
 }
 
 //Guardo los datos en LocalStorage
 function guardarUsuarios(listado){
-  localStorage.setItem('usuariosGuardados', JSON.stringify(listado))
+  localStorage.setItem('usuariosGuardados', JSON.stringify(listado));
 }
 
 //Hago el cálculo del IMC
@@ -36,17 +38,18 @@ function calcularIMC (){
   let altura = alturaUsuario.value;
   let calculo = peso / (altura * altura);
   let convert = calculo.toFixed(1);
+  resultadoUsuario.value = `${convert}`;
 
   if (calculo <= 18.5){
-  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en bajo peso, tu IMC es: ${convert}`;
+  imcShow.innerHTML = nombreUsuario.value + ", estás en bajo peso, tu IMC es de <br> " + convert; 
   } else if (calculo > 18.5 && calculo < 24.9) {
-  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás dentro de los valores normales, tu IMC es: ${convert}`;
+  imcShow.innerHTML = nombreUsuario.value + ", estás dentro de los valores normales, tu IMC es de <br> " + convert;
   } else if (calculo > 25 && calculo < 29.9) {
-  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en el rango de sobrepeso, tu IMC es: ${convert}`;
+  imcShow.innerHTML = nombreUsuario.value + ", estás en el rango de sobrepeso, tu IMC es de <br> " + convert;
   } else if (calculo > 30 && calculo < 34.9) {
-  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en el rango de obesidad, tu IMC es: ${convert}`;
+  imcShow.innerHTML = nombreUsuario.value + ", estás en el rango de obesidad, tu IMC es de <br> " + convert;
   } else if (calculo > 35) {
-  resultadoUsuario.innerHTML = `${nombreUsuario.value}, estás en el rango de obesidad mórbida, tu IMC es: ${convert}`;
+  imcShow.innerHTML = nombreUsuario.value + ", estás en el rango de obesidad mórbida, tu IMC es de <br> " + convert;
   } else {
     nombreUsuario.value + ", ingresaste datos inválidos, no podemos calcular tu IMC";
     return null;
@@ -75,6 +78,8 @@ if (imagenResultado) {
       break;
   }
 }
+agregarUsuario (calculos);
+guardarUsuarios (calculos);
 }
 
 //Botón que dispara el cálculo
@@ -85,8 +90,6 @@ btnCalcular.onclick = (e) => {
   } else{
     calcularIMC();
   }
-  agregarUsuario (calculos);
-  guardarUsuarios (calculos);
 }
 
 //Función para limpiar datos en LocalStorage
