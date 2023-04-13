@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script defer src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Calculadora de IMC</title>    
 </head>
 
@@ -15,19 +16,19 @@
         <form>     
           <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingresá tu nombre" id="formulario"><br>
+            <input type="text" class="form-control" id="nombre" placeholder="Ingresá tu nombre"><br>
           </div>
           <div class="form-group">
             <label for="peso">Peso (kg)</label>
-            <input type="text" class="form-control" id="peso" placeholder="Ingresá tu peso" id="formulario"><br>
+            <input type="text" class="form-control" id="peso" placeholder="Ingresá tu peso"><br>
           </div>
           <div class="form-group">
             <label for="altura">Altura (cm)</label>
-            <input type="text" class="form-control" id="altura" placeholder="Ingresá tu altura en centímetros, ejemplo: 1.70" id="formulario"><br>
+            <input type="text" class="form-control" id="altura" placeholder="Ingresá tu altura en centímetros, ejemplo: 1.70"><br>
           </div>
           <div class="form-group">
             <label for="fecha">Fecha:</label>
-            <input type="text" class="form-control" id="fecha" placeholder="Ingresá la fecha en formato dd/mm/yyyy" id="formulario"><br>
+            <input type="text" class="form-control" id="fecha" placeholder="Ingresá la fecha en formato dd/mm/yyyy"><br>
           </div>
           <button id="calcular" class="btn btn-primary">Calcular IMC</button>
           <button type="reset" class="btn btn-primary" value="Reset">Limpiar formulario</button>
@@ -50,6 +51,12 @@
     <button id="borrar" class="btn btn-primary">Limpiar datos</button>
         </section>
       </div>
-    
+  <div class="container">
+        <h2 class="mt-5 mb-4 text-center">Calculadora de alimentos</h2>
+        <h5>Desde aquí podrás calcular las calorías de algunos alimentos (calculado en 100 gramos)</h5>
+        <input type="text" class="form-control" id="alimentos" placeholder="Ingresá un alimento"><br>
+        <button id="calcularalimento" class="btn btn-primary">Calcular calorías</button>
+        <div id="resultadoalimento" class="d-flex justify-content-center text-center display-5"></div>
+  </div>          
 </body>
 </html>
